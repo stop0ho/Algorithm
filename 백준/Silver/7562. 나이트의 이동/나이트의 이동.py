@@ -1,25 +1,24 @@
 from collections import deque
 
+T = int(input())
 dy = [-1, -2, -2, -1, 1, 2, 2, 1]
 dx = [-2, -1, 1, 2, 2, 1, -1, -2]
 
-for _ in range(int(input())):
+for _ in range(T):
   l = int(input())
-  r1, c1 = map(int, input().split())
-  r2, c2 = map(int, input().split())
-  graph = [[0] * l for _ in range(l)]
-  visited = [[False] * l for _ in range(l)]
-  q = deque([(r1, c1)])
-  visited[r1][c1] = True
+  board = [[-1] * l for _ in range(l)]
+  ny, nx = map(int, input().split())
+  ty, tx = map(int, input().split())
+  board[ny][nx] = 0
+  q = deque([[ny, nx]])
   while q:
-      y, x = q.popleft()
-      if y == r2 and x == c2:
-        print(graph[r2][c2])
-        break
-      for k in range(8):
-        newY = y + dy[k]
-        newX = x + dx[k]
-        if 0 <= newY < l and 0 <= newX < l and not visited[newY][newX]:
-          q.append((newY, newX))
-          graph[newY][newX] = graph[y][x] + 1
-          visited[newY][newX] = True
+    y, x = q.popleft()
+    if y == ty and x == tx:
+      print(board[y][x])
+      break
+    for k in range(8):
+      newY = y + dy[k]
+      newX = x + dx[k]
+      if 0 <= newY < l and 0 <= newX < l and board[newY][newX] == -1:
+        board[newY][newX] = board[y][x] + 1
+        q.append([newY, newX])
