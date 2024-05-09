@@ -1,15 +1,7 @@
 function solution(arr) {
-    let answer = []
-    for (let num of arr) {
-        if (num >= 50 && num % 2 === 0){
-            answer.push(num/2)
-            continue
-        }
-        if (num < 50 && num % 2 !== 0) {
-            answer.push(num*2)
-            continue
-        }
-        answer.push(num)
-    }
-    return answer;
+    return arr.map((num) => {
+        if (num >= 50 && num % 2 === 0) return num / 2
+        if (num < 50 && num % 2 !== 0 ) return num * 2
+        return num
+    })
 }
