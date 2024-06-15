@@ -1,0 +1,16 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+N = int(input())
+scores = [0, 0]
+for _ in range(N):
+	win = input()
+	if win == 'D':
+		idx = 0
+	else:
+		idx = 1
+	scores[idx] += 1
+	if scores[idx] - scores[1 - idx] == 2:
+		break
+
+print(':'.join(map(str, scores)))
+	
