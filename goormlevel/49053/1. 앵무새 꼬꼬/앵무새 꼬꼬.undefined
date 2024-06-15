@@ -1,0 +1,15 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+N = int(input())
+
+for _ in range(N):
+	s = input()
+	answer = ''
+	
+	for c in s:
+		if c in 'AEIOUaeiou':
+			answer += c
+	if answer:
+		print(answer)
+	else:
+		print('???')
