@@ -1,0 +1,28 @@
+# -*- coding: utf-8 -*-
+# UTF-8 encoding when using korean
+N, M = map(int, input().split())
+answer = [['.' for _ in range(M)] for _ in range(N)]
+
+i = 0
+j = 1
+go = True
+direct = 1
+
+answer[0][0] = '#'
+
+while go:
+	answer[i][j] = '#'
+	
+	if j == 0 or j == M-1:
+		direct *= -1
+		for k in range(2):
+			i += 1
+			if i >= N:
+				go = False
+				break
+			answer[i][j] = '#'
+	
+	j += direct
+
+for l in answer:
+	print(''.join(l))
