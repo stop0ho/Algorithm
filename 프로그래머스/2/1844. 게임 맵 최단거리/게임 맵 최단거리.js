@@ -4,7 +4,6 @@ function solution(maps) {
     
     let dist = Array.from(Array(N), () => new Array(M).fill(-1))
 
-    // 상 하 좌 우
     let dy = [-1, 1, 0, 0]
     let dx = [0, 0, -1, 1]
     
@@ -20,14 +19,12 @@ function solution(maps) {
             let newX = dx[k] + x
             
             if (0 <= newY && newY < N && 0 <= newX && newX < M && maps[newY][newX]) {
-                maps[newY][newX] = 0 // 방문처리
+                maps[newY][newX] = 0
                 dist[newY][newX] = dist[y][x] + 1
                 q.push([newY, newX])
             }
         }
     }
-    
-    console.log(dist)
-    
+        
     return dist[maps.length - 1][maps[0].length - 1];
 }
