@@ -8,22 +8,21 @@ function solution(N, road, K) {
         graph[b].push([a, c]);
     }
     
-    const q = [[1, 0]]; // 현재 점, 거리
+    const q = [[1, 0]];
     while (q.length > 0) {
         q.sort((a, b) => a[1] - b[1]);
-        const [i, d] = q.shift();
+        const [node, dist] = q.shift(); // 가장 짧은 경로 노드
         
-        if (d > distance[i]) continue;
+        if (dist > distance[node]) continue;
         
-        for (const [next, cost] of graph[i]) {
-            const newD = d + cost;
-            if (newD < distance[next]) {
-                distance[next] = newD;
-                q.push([next, newD]);
+        for (const [nextNode, nextDist] of graph[node]) {
+            const newDist = dist + nextDist;
+            if (newDist < distance[nextNode]) {
+                distance[nextNode] = newDist;
+                q.push([nextNode, newDist]);
             }
         }
     }
     
-    return distance.filter(d => d <= K).length;
-    
+    return distance.filter((d) => d <= K).length;
 }
